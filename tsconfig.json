@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+				"lib": [
+					"es2015"
+				],
+        "module": "commonjs", // 组织代码方式
+        "target": "es2015", // 编译目标平台
+        "outDir": "./build", // 编译输出路径
+        "sourceMap": true, // 编译时生成对应的map文件
+        "removeComments": true, // 编译时删除注释
+        "noImplicitAny": false, // 表达式和声明含有隐式的any时报错
+        "declaration": true, // 生成对应对.d.ts文件
+        "preserveConstEnums": true, // 保留 const和 enum声明
+        "experimentalDecorators": true, // 开启es7装饰器的支持
+        "emitDecoratorMetadata": true, // 给源码里的装饰器声明加上设计类型元数据
+				"moduleResolution": "node", //模块解析策略
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
