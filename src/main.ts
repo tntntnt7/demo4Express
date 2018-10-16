@@ -4,7 +4,6 @@ import * as bodyParser from 'body-parser'
 import initRoute from './routes'
 
 class Server {
-
 	private app: express.Application
 
 	constructor() {
@@ -29,7 +28,7 @@ class Server {
 
 	private run(): void {
 		this.app.listen(3000, () => {
-			console.log('app start')
+			console.log('app start!')
 		})
 	}
 }

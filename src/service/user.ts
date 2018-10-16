@@ -5,6 +5,6 @@ export default class UserService {
 	}
 
 	public async test(): Promise<string> {
-		return await Promise.resolve('test')
+		return await Promise.resolve('test!')
 	}
 }

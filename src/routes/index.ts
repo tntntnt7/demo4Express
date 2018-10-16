@@ -16,7 +16,7 @@ function initRoute() {
 		const mainRoute = controller.route
 		for (const cell of Reflect.ownKeys(Controllers[key].prototype)) {
 			if (typeof controller[cell] === 'function' && cell !== 'constructor') {
-				let {route, method, func} = controller[cell]()
+				const { route, method, func } = controller[cell]()
 				router[method](`${mainRoute}${route}`, async (req, res) => {
 					const result = await func(controller, req)
 					res.json(result)

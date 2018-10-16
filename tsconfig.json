@@ -13,7 +13,7 @@
         "preserveConstEnums": true, // 保留 const和 enum声明
         "experimentalDecorators": true, // 开启es7装饰器的支持
         "emitDecoratorMetadata": true, // 给源码里的装饰器声明加上设计类型元数据
-				"moduleResolution": "node", //模块解析策略
+        "moduleResolution": "node", //模块解析策略
     },
     "include": [
         "src/**/*"
