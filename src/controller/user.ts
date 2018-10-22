@@ -1,7 +1,7 @@
 import * as express from 'express'
 import UserService from '../service/user'
-import { Controller } from '../utils/decorator/controller'
-import { Action } from '../utils/decorator/action'
+import { Controller } from '../common/utils/decorator/controller'
+import { Action } from '../common/utils/decorator/action'
 
 @Controller({route: '/user'})
 export default class UserController {

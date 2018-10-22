@@ -1,6 +1,6 @@
 import * as express from 'express'
 import * as bodyParser from 'body-parser'
-import logger from './common/util/logger'
+import logger from './common/utils/logger'
 import config from './common/config'
 import initRoute from './routes'
 
