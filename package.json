@@ -7,12 +7,13 @@
     "build": "gulp build",
     "clean": "gulp clean",
     "tslint": "gulp tslint",
-    "tsc-dev": "tsc -w --sourceMap true",
+    "tsc-dev": "tsc -w",
     "tsc-production": "tsc"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "log4js": "^3.0.6"
   },
   "devDependencies": {
     "@types/express": "^4.16.0",

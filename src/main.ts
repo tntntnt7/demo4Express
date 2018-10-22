@@ -1,6 +1,7 @@
 import * as express from 'express'
 import * as bodyParser from 'body-parser'
-
+import logger from './common/util/logger'
+import config from './common/config'
 import initRoute from './routes'
 
 class Server {
@@ -27,8 +28,8 @@ class Server {
 	}
 
 	private run(): void {
-		this.app.listen(3000, () => {
-			console.log('app start!')
+		this.app.listen(config.port, () => {
+			logger.info(`app start at ${config.host}:${config.port}`)
 		})
 	}
 }
