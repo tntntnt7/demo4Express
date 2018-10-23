@@ -4,10 +4,6 @@ import * as Services from '../service'
 
 const router = express.Router()
 
-console.log('Controllers => ', Controllers)
-console.log('Services => ', Services)
-
-// function initRoute(app: express.Application) {
 function initRoute() {
 	Object.keys(Controllers).forEach(key => {
 		const service = Reflect.construct(Services[key], [null])
@@ -25,7 +21,6 @@ function initRoute() {
 		}
 	})
 
-	router.get('/', (req, res) => res.json('hello world'))
 	return router
 }
 
