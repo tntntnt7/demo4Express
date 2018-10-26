@@ -7,7 +7,7 @@ interface Idata {
 	/**
 	 * 方法
 	 */
-	method?: 'get' | 'post'
+	method?: 'get' | 'post' | 'put' | 'delete'
 }
 
 /**

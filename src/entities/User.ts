@@ -1,10 +1,10 @@
 import { Entity, Column } from 'typeorm'
-import BaseClass from './BaseClass'
+import Base from './Base'
 
 @Entity()
-export default class User extends BaseClass {
+export default class User extends Base {
 
-	@Column()
+	@Column('text', { nullable: true })
 	public userName: string
 
 	@Column()
@@ -13,6 +13,6 @@ export default class User extends BaseClass {
 	@Column()
 	public sex: number
 
-	@Column()
+	@Column('int', { nullable: false, default: 0 })
 	public phoneNum: number
 }

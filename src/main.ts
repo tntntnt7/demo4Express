@@ -12,10 +12,15 @@ class Server {
 		this.app = express()
 	}
 
-	public static bootstrap(): void {
+	public static async bootstrap() {
 		const server = new Server()
 		server.init()
-		server.run()
+
+		if (await initTypeORM()) {
+			server.run()
+		} else {
+			logger.error('app boot failed')
+		}
 	}
 
 	private init(): void {
@@ -25,9 +30,6 @@ class Server {
 		this.app.use(bodyParser.json({ limit: '10mb' }))
 		// 设置路由
 		this.app.use('/', initRoute())
-
-		// 链接数据库
-		initTypeORM()
 	}
 
 	private run(): void {

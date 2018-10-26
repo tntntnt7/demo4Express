@@ -1,10 +1,10 @@
 import { BaseEntity, PrimaryGeneratedColumn, Column } from 'typeorm'
 
-export default class BaseClass extends BaseEntity {
+export default class Base extends BaseEntity {
 
 	@PrimaryGeneratedColumn()
 	public id: number
 
-	@Column()
+	@Column('datetime', { default: () => 'NOW()' })
 	public createTime: string
 }
