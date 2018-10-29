@@ -3,6 +3,7 @@ export const configDev = {
 
   host: 'localhost',
 	port: '7707',
+	url: 'http://localhost:7707',
 
 	mariadb: {
     type: 'mariadb',

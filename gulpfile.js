@@ -7,6 +7,8 @@ gulp.task('default', ['start'])
 
 gulp.task('start', ['build'], shell.task(['yarn run tsc-dev']))
 
+gulp.task('test', ['build'], shell.task(['yarn run test-dev']))
+
 gulp.task('build', ['clean'], shell.task(['yarn run tsc-production']))
 
 gulp.task('clean', ['tslint'], () => {
