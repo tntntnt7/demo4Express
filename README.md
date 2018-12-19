@@ -3,7 +3,7 @@
 ## 启动
 ```
   npm install / yarn
-  gulp
+	yarn start
 ```
 ## TODO
 - [x] 日志配置
