@@ -1,6 +1,8 @@
 import * as express from 'express'
 import * as bodyParser from 'body-parser'
+import * as path from 'path'
 import logger from './common/utils/logger'
+import files from './common/utils/file'
 import config from './common/config'
 import initRoute from './routes'
 import initTypeORM from './entities'
@@ -24,12 +26,14 @@ class Server {
 	}
 
 	private init(): void {
-		// 静态资源访问
-		this.app.use('/static', express.static('public'))
 		// 设置body-parser
 		this.app.use(bodyParser.json({ limit: '10mb' }))
 		// 设置路由
 		this.app.use('/', initRoute())
+		// 静态资源访问
+		this.app.use('/file', express.static(path.join(__dirname, 'common')))
+		// 文件上传
+		this.app.post('/file', files.upload, files.doUpload)
 	}
 
 	private run(): void {
