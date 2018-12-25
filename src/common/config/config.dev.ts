@@ -20,4 +20,14 @@ export const configDev = {
 			`${__dirname}/../../entities/**/*.js`,
 		],
 	},
+
+	mongodb: {
+		type: 'mongodb',
+		host: 'localhost',
+		port: '27017',
+		database: 'test',
+		username: '',
+		password: '',
+		authSource: 'admin',
+	},
 }

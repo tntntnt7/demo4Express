@@ -7,4 +7,7 @@ export default class Base extends BaseEntity {
 
 	@Column('datetime', { default: () => 'NOW()' })
 	public createTime: string
+
+	@Column('datetime', { default: () => 'NOW()' })
+	public updateTime: string
 }
