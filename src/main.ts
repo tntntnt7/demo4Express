@@ -5,7 +5,8 @@ import logger from './common/utils/logger'
 import files from './common/utils/file'
 import config from './common/config'
 import initRoute from './routes'
-import initTypeORM from './entities'
+import { initTypeORM } from './entities'
+import { initMongodb } from './models'
 
 class Server {
 	private app: express.Application
@@ -18,7 +19,7 @@ class Server {
 		const server = new Server()
 		server.init()
 
-		if (await initTypeORM()) {
+		if (await initTypeORM() && await initMongodb()) {
 			server.run()
 		} else {
 			logger.error('app boot failed')
