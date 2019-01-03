@@ -5,6 +5,12 @@ import * as Services from '../service'
 const router = express.Router()
 
 function initRoute() {
+	// 跨域支持
+	router.all('*', function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*')
+    next()
+	})
+
 	Object.keys(Controllers).forEach(key => {
 		const service = Reflect.construct(Services[key], [null])
 		const controller = Reflect.construct(Controllers[key], [service])

@@ -27,7 +27,7 @@ export default class TodoService {
 	public async update(obj: any): Promise<any> {
 		const ret = await this.getById(obj._id)
 		const td = await ret[0]
-		td.content = obj.content
+		td.task = obj.task
 		td.done = obj.done
 		td.image = obj.image
 

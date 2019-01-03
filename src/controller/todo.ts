@@ -19,15 +19,15 @@ export default class TodoController {
 	}
 
 	@Action({route: '/', method: 'post'})
-	public async register(request: express.Request): Promise<any> {
-		const user = request.body
-		return await this._service.create(user)
+	public async creact(request: express.Request): Promise<any> {
+		const todo = request.body
+		return await this._service.create(todo)
 	}
 
 	@Action({route: '/', method: 'put'})
 	public async update(request: express.Request): Promise<any> {
-		const user = request.body
-		const result = await this._service.update(user)
+		const todo = request.body
+		const result = await this._service.update(todo)
 		return result
 	}
 

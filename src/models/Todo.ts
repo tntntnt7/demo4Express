@@ -3,7 +3,7 @@ import base, { postFunc, preFunc } from './base'
 
 const TodoShema = new Schema(
 	{
-		content: { type: String, maxlength: 200 },
+		task: { type: String, maxlength: 200 },
 		image: { type: String, maxlength: 200 },
 		done: { type: Boolean, default: false },
 		...base,
