@@ -1,6 +1,7 @@
 import * as express from 'express'
 import * as bodyParser from 'body-parser'
 import * as path from 'path'
+import * as cors from 'cors'
 import logger from './common/utils/logger'
 import files from './common/utils/file'
 import config from './common/config'
@@ -35,6 +36,8 @@ class Server {
 		this.app.use('/file', express.static(path.join(__dirname, 'common')))
 		// 文件上传
 		this.app.post('/file', files.upload, files.doUpload)
+		// 跨域支持
+		this.app.use(cors())
 	}
 
 	private run(): void {
