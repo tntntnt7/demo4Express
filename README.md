@@ -3,9 +3,10 @@
 ## 启动
 ```
   npm install / yarn
-  gulp
+  yarn start
 ```
 ## TODO
 - [x] 日志配置
-- [ ] 数据库
+- [x] 数据库
+-	[x] 文件上传
 - [ ] 测试

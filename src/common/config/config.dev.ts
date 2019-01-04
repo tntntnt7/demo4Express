@@ -3,7 +3,9 @@ export const configDev = {
 
   host: 'localhost',
 	port: '7707',
-	url: 'http://localhost:7707',
+	apiURL: 'http://localhost:7707',
+	uploadPath: '../assets/uploads',
+	uploadFieldName: 'file',
 
 	mariadb: {
     type: 'mariadb',
@@ -17,5 +19,15 @@ export const configDev = {
 		entities: [
 			`${__dirname}/../../entities/**/*.js`,
 		],
+	},
+
+	mongodb: {
+		type: 'mongodb',
+		host: 'localhost',
+		port: '27017',
+		database: 'test',
+		username: '',
+		password: '',
+		authSource: 'admin',
 	},
 }
