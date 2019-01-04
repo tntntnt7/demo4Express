@@ -28,16 +28,16 @@ class Server {
 	}
 
 	private init(): void {
+		// 跨域支持（在设置路由之前，否则无效）
+		this.app.use(cors())
 		// 设置body-parser
 		this.app.use(bodyParser.json({ limit: '10mb' }))
-		// 设置路由
-		this.app.use('/', initRoute())
 		// 静态资源访问
 		this.app.use('/file', express.static(path.join(__dirname, 'common')))
 		// 文件上传
 		this.app.post('/file', files.upload, files.doUpload)
-		// 跨域支持
-		this.app.use(cors())
+		// 设置路由
+		this.app.use('/', initRoute())
 	}
 
 	private run(): void {
