@@ -46,8 +46,10 @@ export default class UserController {
 		return result
 	}
 
-	// @Action({route: '/login', method: 'post'})
-	// public async login(request: express.Request): Promise<any> {
-	// }
+	@Action({route: '/login', method: 'post'})
+	public async login(request: express.Request): Promise<any> {
+		const { userName, password } = request.body
+		return this._service.login(userName, password)
+	}
 
 }

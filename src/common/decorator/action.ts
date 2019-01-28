@@ -1,6 +1,6 @@
 import { verifyToken as verifyingToken } from '../utils/token'
 import logger from '../utils/logger'
-import config from '../config';
+import config from '../config'
 
 interface Idata {
 	/**

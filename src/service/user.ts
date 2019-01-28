@@ -1,5 +1,8 @@
 import { Repository, getConnectionManager } from 'typeorm'
 import User from '../entities/User'
+import config from '../common/config'
+import * as utils from 'utility'
+import { getToken } from '../common/utils/token'
 
 export default class UserService {
 
@@ -12,8 +15,9 @@ export default class UserService {
 		return this._rep
 	}
 
-	public async create(obj: User): Promise<any> {
-		return this.rep.save(obj)
+	public async create(user: User): Promise<any> {
+		user.password = utils.md5(user.password)
+		return this.rep.save(user)
 	}
 
 	public async get(): Promise<User[]> {
@@ -31,5 +35,26 @@ export default class UserService {
 	public async removeById(id: number): Promise<any> {
 		const user = await this.getById(id)
 		return this.rep.remove(user)
+	}
+
+	public async login(userName: string, password: string): Promise<any> {
+		const user: User = await this.rep.createQueryBuilder('user')
+												.where('user.userName = :userName', { userName })
+												.getOne()
+		// 用户不存在
+		if (!user) { throw config.error['-1100'] }
+		// 验证密码
+		this.verifyPassword(user, password)
+		// 分配token
+		user[config.token.userTokenPropName] = getToken(user)
+
+		return user
+	}
+
+	private verifyPassword(user: User, password: string): void {
+		const temp = utils.md5(password)
+		if (temp !== user.password) {
+			throw config.error['-1101']
+		}
 	}
 }

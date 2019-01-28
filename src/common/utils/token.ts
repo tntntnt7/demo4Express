@@ -1,6 +1,6 @@
 import * as jwt from 'jsonwebtoken'
 import logger from './logger'
-import config from '../config';
+import config from '../config'
 
 interface IVerifyToken {
 	success: boolean
