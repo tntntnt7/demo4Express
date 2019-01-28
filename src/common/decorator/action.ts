@@ -1,3 +1,4 @@
+import { handleErrorResult, handleSuccessfulResult } from '../utils/customResult'
 import { verifyToken as verifyingToken } from '../utils/token'
 import logger from '../utils/logger'
 import config from '../config'
@@ -32,14 +33,13 @@ export const Action = function(metadata: Idata) {
 				const result = await func.apply(context, [params])
 				if (verifyToken) {
 					const vt = verifyingToken(params.headers[config.token.headTag])
-					return vt.success ? result : vt
+					if (!vt.success) { throw vt.error }
 				}
 
-				return result
+				return handleSuccessfulResult(result)
 			} catch (error) {
 				logger.error(error)
-
-				return error
+				return handleErrorResult(error)
 			}
 		}
 

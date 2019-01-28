@@ -42,7 +42,7 @@ export default class UserService {
 												.where('user.userName = :userName', { userName })
 												.getOne()
 		// 用户不存在
-		if (!user) { throw config.error['-1100'] }
+		if (!user) { throw config.error(-1100) }
 		// 验证密码
 		this.verifyPassword(user, password)
 		// 分配token
@@ -54,7 +54,7 @@ export default class UserService {
 	private verifyPassword(user: User, password: string): void {
 		const temp = utils.md5(password)
 		if (temp !== user.password) {
-			throw config.error['-1101']
+			throw config.error(-1101)
 		}
 	}
 }

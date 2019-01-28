@@ -1,11 +1,12 @@
 import * as jwt from 'jsonwebtoken'
+import { IError } from '../config/errors'
 import logger from './logger'
 import config from '../config'
 
 interface IVerifyToken {
 	success: boolean
 	decoded?: any
-	error?: any
+	error?:	IError
 }
 
 export const getToken = (payload: any): string => {
@@ -21,13 +22,13 @@ export const verifyToken = (token: string): IVerifyToken => {
 		const decoded = jwt.verify(token, config.token.secret)
 		return { success: true, decoded }
 	} catch (err) {
-		logger.warn(`token error: ${err}`)
+		logger.error(`token error: ${err}`)
 
-		let error = config.error['-1000']
+		let error: IError = config.error(-1000)
 		if (err.name === 'JsonWebTokenError' && err.message === 'jwt must be provided') {
-      error = config.error['-1001']
+      error = config.error(-1001)
     } else if (err.name === 'TokenExpiredError' && err.message === 'jwt expired') {
-      error = config.error['-1002']
+      error = config.error(-1002)
 		}
 
 		return { success: false, error }

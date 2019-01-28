@@ -1,6 +1,6 @@
 import { configDev } from './config.dev'
 import { configProd } from './config.prod'
-import { errors } from './errors'
+import * as errors from './errors'
 import { map } from './map'
 
 /**
