@@ -16,6 +16,9 @@ export default class UserService {
 	}
 
 	public async create(user: User): Promise<any> {
+		const use = await this.getByName(user.userName)
+		if (use) { throw config.error(-1102) }
+
 		user.password = utils.md5(user.password)
 		return this.rep.save(user)
 	}
@@ -28,6 +31,12 @@ export default class UserService {
 		return this.rep.findOne(id)
 	}
 
+	public async getByName(name: string): Promise<User> {
+		return await this.rep.createQueryBuilder('user')
+								.where('user.userName = :name', { name })
+								.getOne()
+	}
+
 	public async update(obj: User): Promise<any> {
 		return this.rep.save(obj)
 	}
@@ -38,9 +47,7 @@ export default class UserService {
 	}
 
 	public async login(userName: string, password: string): Promise<any> {
-		const user: User = await this.rep.createQueryBuilder('user')
-												.where('user.userName = :userName', { userName })
-												.getOne()
+		const user: User = await this.getByName(userName)
 		// 用户不存在
 		if (!user) { throw config.error(-1100) }
 		// 验证密码
@@ -51,10 +58,16 @@ export default class UserService {
 		return user
 	}
 
+	public async userExist(userName: string): Promise<boolean> {
+		const user = await this.getByName(userName)
+		return Boolean(user)
+	}
+
 	private verifyPassword(user: User, password: string): void {
 		const temp = utils.md5(password)
 		if (temp !== user.password) {
 			throw config.error(-1101)
 		}
 	}
+
 }

@@ -13,6 +13,19 @@ export default class UserController {
 		this._service = service
 	}
 
+	@Action({route: '/exist', method: 'get'})
+	public async userExist(request: express.Request): Promise<any> {
+		const userName = request.query.name
+		const result = await this._service.userExist(userName)
+		return result
+	}
+
+	@Action({route: '/login', method: 'post'})
+	public async login(request: express.Request): Promise<any> {
+		const { userName, password } = request.body
+		return this._service.login(userName, password)
+	}
+
 	@Action({route: '/', method: 'get', verifyToken: true})
 	public async get(request: express.Request): Promise<any> {
 		const result = await this._service.get()
@@ -32,6 +45,7 @@ export default class UserController {
 		return result
 	}
 
+	// 放在userExist后面,不然会出现 /exist 的请求会被此方法拦截
 	@Action({route: '/:id', method: 'get', verifyToken: true})
 	public async getById(request: express.Request): Promise<any> {
 		const id = request.params.id
@@ -44,12 +58,6 @@ export default class UserController {
 		const id = request.params.id
 		const result = await this._service.removeById(id)
 		return result
-	}
-
-	@Action({route: '/login', method: 'post'})
-	public async login(request: express.Request): Promise<any> {
-		const { userName, password } = request.body
-		return this._service.login(userName, password)
 	}
 
 }
