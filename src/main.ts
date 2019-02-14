@@ -8,6 +8,7 @@ import config from './common/config'
 import initRoute from './routes'
 import { initTypeORM } from './entities'
 import { initMongodb } from './models'
+import { initSocketIO } from './socket/socketio';
 
 class Server {
 	private app: express.Application
@@ -17,10 +18,14 @@ class Server {
 	}
 
 	public static async bootstrap() {
-		const server = new Server()
-		server.init()
-
+		// 数据库连接
 		if (await initTypeORM() && await initMongodb()) {
+			// socket事件注册
+			initSocketIO()
+
+			// server启动
+			const server = new Server()
+			server.init()
 			server.run()
 		} else {
 			logger.error('app boot failed')

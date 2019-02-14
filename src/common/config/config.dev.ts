@@ -2,10 +2,12 @@ export const configDev = {
   debug: true,
 
   host: 'localhost',
-	port: '7707',
+	port: '7700',
 	apiURL: 'http://localhost:7707',
 	uploadPath: '../assets/uploads',
 	uploadFieldName: 'file',
+
+	socketPort: '7701',
 
 	mariadb: {
     type: 'mariadb',
