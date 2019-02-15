@@ -8,7 +8,7 @@ import config from './common/config'
 import initRoute from './routes'
 import { initTypeORM } from './entities'
 import { initMongodb } from './models'
-import { initSocketIO } from './socket/socketio';
+import { initSocketIO } from './socket'
 
 class Server {
 	private app: express.Application
