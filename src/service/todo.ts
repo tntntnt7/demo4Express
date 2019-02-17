@@ -1,40 +1,34 @@
-import Todo from '../models/Todo'
-
+import { getConnectionManager, getRepository, Repository } from 'typeorm'
+import Todo from '../entities/Todo'
 export default class TodoService {
 
 	private _rep: any
 
-	get rep() {
+	get rep(): Repository<Todo> {
 		if (!this._rep) {
-			this._rep = Todo
+			this._rep = getConnectionManager().get().getRepository(Todo)
 		}
 		return this._rep
 	}
 
-	public async create(obj: any): Promise<any> {
-		const td = new this.rep(obj)
-		return await td.save()
-	}
-
-	public async get(): Promise<any> {
-		return this.rep.find({})
+	public async create(obj: Todo): Promise<any> {
+		return await this.rep.save(obj)
 	}
 
 	public async getById(id: number): Promise<any> {
-		return this.rep.find({ _id: id })
+		return this.rep.find({ id })
+	}
+
+	public async getByUserId(userId: number, where: any): Promise<any> {
+		return this.rep.find({ userId, ...where })
 	}
 
 	public async update(obj: any): Promise<any> {
-		const ret = await this.getById(obj._id)
-		const td = await ret[0]
-		td.task = obj.task
-		td.done = obj.done
-		td.image = obj.image
-
-		return await td.save()
+		return
 	}
 
 	public async removeById(id: number): Promise<any> {
-		return this.rep.deleteOne({ _id: id })
+		const todo = await this.getById(id)
+		return this.rep.remove(todo)
 	}
 }

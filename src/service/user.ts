@@ -1,7 +1,7 @@
 import { Repository, getConnectionManager } from 'typeorm'
+import * as utils from 'utility'
 import User from '../entities/User'
 import config from '../common/config'
-import * as utils from 'utility'
 import { getToken } from '../common/utils/token'
 
 export default class UserService {

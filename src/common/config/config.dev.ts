@@ -14,9 +14,9 @@ export const configDev = {
     host: 'localhost',
     port: 3306,
     username: 'root',
-    password: 'hys_1234',
+    password: '',
     database: 'demo4Express',
-    // synchronize: true,
+    synchronize: true,
 		logging: 'all', // https://github.com/typeorm/typeorm/blob/master/docs/logging.md
 		entities: [
 			`${__dirname}/../../entities/**/*.js`,

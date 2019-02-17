@@ -12,13 +12,13 @@ export default class TodoController {
 		this._service = service
 	}
 
-	@Action({route: '/', method: 'get'})
+	@Action({route: '/', method: 'get', verifyToken: true})
 	public async get(request: express.Request): Promise<any> {
-		const result = await this._service.get()
-		return result
+		const { userId, where } = request.query
+		return await this._service.getByUserId(userId, where)
 	}
 
-	@Action({route: '/', method: 'post'})
+	@Action({route: '/', method: 'post', verifyToken: true})
 	public async creact(request: express.Request): Promise<any> {
 		const todo = request.body
 		return await this._service.create(todo)
@@ -41,8 +41,7 @@ export default class TodoController {
 	@Action({route: '/:id', method: 'delete'})
 	public async removeById(request: express.Request): Promise<any> {
 		const id = request.params.id
-		const result = await this._service.removeById(id)
-		return result
+		return await this._service.removeById(id)
 	}
 
 }
