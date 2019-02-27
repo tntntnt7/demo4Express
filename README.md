@@ -1,6 +1,7 @@
 # demo4Express
 ---
 ### 启动
+修改/src/common/config/config.dev.ts, 配置数据库
 使用VsCode打开, 终端运行以下命令:
 ```
   npm install / yarn
