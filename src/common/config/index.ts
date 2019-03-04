@@ -1,5 +1,6 @@
 import { configDev } from './config.dev'
 import { configProd } from './config.prod'
+import * as errors from './errors'
 import { map } from './map'
 
 /**
@@ -9,9 +10,6 @@ import { map } from './map'
 const env = process.env.NODE_ENV || 'dev'
 let config: any = {...env === 'dev' ? configDev : configProd}
 
-config = {
-	...config,
-	...map,
-}
+config = Object.assign({}, config, map, errors)
 
 export default config

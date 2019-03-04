@@ -10,9 +10,9 @@ export default class User extends Base {
 	@Column()
 	public password: string
 
-	@Column()
+	@Column({ nullable: true, default: -1 })
 	public sex: number
 
-	@Column('text', { nullable: true })
+	@Column({ nullable: true, default: -1 })
 	public phoneNum: number
 }
