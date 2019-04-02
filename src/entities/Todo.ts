@@ -10,13 +10,11 @@ export default class Todo extends Base {
 	@Column('text')
 	public content: string
 
-	// 图片路径
-	@Column('text', { nullable: true, default: '' })
-	public path: string
+	@Column('datetime', { nullable: true, default: () => 'NOW()' })
+	public endTime: string
 
-	// 宽度
-	@Column({ nullable: true, default: 1 })
-	public cols: number
+	@Column({ nullable: true, default: 0 })
+	public done: number
 
 	@Column()
 	public userId: number
