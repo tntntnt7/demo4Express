@@ -11,7 +11,7 @@ export default class Todo extends Base {
 	public content: string
 
 	@Column('datetime', { nullable: true, default: () => 'NOW()' })
-	public endTime: string
+	public deadline: string
 
 	@Column({ nullable: true, default: 0 })
 	public done: number
