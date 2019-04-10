@@ -7,7 +7,7 @@ import files from './common/utils/file'
 import config from './common/config'
 import initRoute from './routes'
 import { initTypeORM } from './entities'
-import { initMongodb } from './models'
+// import { initMongodb } from './models'
 import { initSocketIO } from './socket'
 
 class Server {
@@ -19,7 +19,8 @@ class Server {
 
 	public static async bootstrap() {
 		// 数据库连接
-		if (await initTypeORM() && await initMongodb()) {
+		// if (await initTypeORM() && await initMongodb()) {
+		if (await initTypeORM()) {
 			// socket事件注册
 			initSocketIO()
 
