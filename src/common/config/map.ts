@@ -7,7 +7,7 @@ export const map = {
 		userTokenPropName: 'accessToken',	// user储存token的属性名
 	},
 
-	sex: {
+	gender: {
 		man: 0,
 		woman: 1,
 	},

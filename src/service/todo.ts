@@ -20,11 +20,14 @@ export default class TodoService {
 	}
 
 	public async getByUserId(userId: number, where: any): Promise<any> {
-		return this.rep.find({ userId, ...where })
+		return this.rep.createQueryBuilder('todo')
+					.where('userId = :userId', {userId})
+					.orderBy('deadline', 'DESC')
+					.getMany()
 	}
 
 	public async update(obj: any): Promise<any> {
-		return
+		return await this.rep.save(obj)
 	}
 
 	public async removeById(id: number): Promise<any> {

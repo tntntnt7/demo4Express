@@ -11,7 +11,7 @@ export default class User extends Base {
 	public password: string
 
 	@Column({ nullable: true, default: -1 })
-	public sex: number
+	public gender: number
 
 	@Column({ nullable: true, default: -1 })
 	public phoneNum: number
