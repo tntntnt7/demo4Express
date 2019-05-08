@@ -20,6 +20,7 @@ export default class UserService {
 		if (use) { throw config.error(-1102) }
 
 		user.password = utils.md5(user.password)
+		user[config.token.userTokenPropName] = getToken(user)
 		return this.rep.save(user)
 	}
 
