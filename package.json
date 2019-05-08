@@ -10,7 +10,7 @@
     "tslint": "gulp tslint",
     "test-dev": "mocha --recursive ./build/test -w -t 5000",
     "tsc-dev": "tsc -w",
-    "tsc-production": "tsc"
+    "tsc-production": "tsc -sourceMap false -declaration false"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
